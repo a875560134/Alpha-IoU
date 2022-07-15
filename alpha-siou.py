@@ -51,7 +51,7 @@ def bbox_iouu(box1, box2, xywh=True, GIoU=True, DIoU=False, CIoU=False, EIoU=Fal
                 sigma = torch.pow(s_cw ** a + s_ch ** a, 0.5)
                 sin_alpha_1 = torch.abs(s_cw) / sigma
                 sin_alpha_2 = torch.abs(s_ch) / sigma
-                threshold = pow(2, 0.5) / 2
+                threshold = pow(2, 0.5*a) / 2
                 sin_alpha = torch.where(sin_alpha_1 > threshold, sin_alpha_2, sin_alpha_1)
                 angle_cost = torch.cos(torch.arcsin(sin_alpha) * 2 - math.pi / 2)
                 rho_x = (s_cw / cw) ** a
